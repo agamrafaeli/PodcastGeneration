@@ -7,4 +7,4 @@
 export PYTHONPATH="$(dirname "$0")/src:$PYTHONPATH"
 
 # Run the CLI module
-python -m cli "$@"
+python -m main "$@"

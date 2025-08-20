@@ -44,7 +44,8 @@ async def test_prosody_cli_basic_enhancement():
         
         cmd = [
             sys.executable,
-            "-m", "cli",
+            "-m", "main",
+            "generate",
             str(sample_file),
             "--engine", "edge_tts",
             "--prosody-style", "newscast",
@@ -115,9 +116,10 @@ async def test_prosody_cli_dramatic_style():
         
         cmd = [
             sys.executable,
-            "-m", "cli",
+            "-m", "main",
+            "generate",
             str(sample_file),
-            "--engine", "edge_tts", 
+            "--engine", "edge_tts",
             "--prosody-style", "dramatic",
             "--prosody-intensity", "4",
             "-o", str(output_file)
@@ -179,10 +181,11 @@ async def test_prosody_cli_intensity_validation():
         
         cmd = [
             sys.executable,
-            "-m", "cli",
+            "-m", "main",
+            "generate",
             str(sample_file),
             "--engine", "edge_tts",
-            "--prosody-style", "conversational", 
+            "--prosody-style", "conversational",
             "--prosody-intensity", "6",  # Invalid - too high
             "-o", str(temp_path / "test_output.mp3")
         ]
@@ -234,7 +237,8 @@ async def test_prosody_cli_without_flags():
         
         cmd = [
             sys.executable,
-            "-m", "cli",
+            "-m", "main",
+            "generate",
             str(sample_file),
             "--engine", "edge_tts",
             "-o", str(output_file)

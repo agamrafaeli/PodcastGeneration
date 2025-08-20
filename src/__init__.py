@@ -6,7 +6,7 @@ A modular text-to-speech application with multi-engine support and intelligent f
 
 from config import logger
 from tts.converter import TextToSpeechConverter
-from cli import main
+from main import main
 from engines import EngineManager, BaseTTSEngine, EngineType
 
 __version__ = "2.0.0"  # Updated to reflect multi-engine architecture
