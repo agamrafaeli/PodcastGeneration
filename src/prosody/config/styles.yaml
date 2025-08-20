@@ -1,0 +1,195 @@
+# Prosody Style Configurations
+# Defines speaking styles with prosody parameters for natural TTS synthesis
+
+styles:
+  conversational:
+    description: "Natural conversational style for everyday speech"
+    parameters:
+      rate: "+0%"
+      pitch: "+0Hz"
+      volume: "+0dB"
+      emphasis_strength: "moderate"
+    use_cases:
+      - "Casual dialogue"
+      - "Interactive content"
+      - "General narration"
+
+  newscast:
+    description: "Professional news anchor style with clear articulation"
+    parameters:
+      rate: "-5%"          # Slightly slower for clarity
+      pitch: "+2Hz"        # Slight pitch elevation for authority
+      volume: "+2dB"       # Slightly louder for presence
+      emphasis_strength: "strong"
+    use_cases:
+      - "News reports"
+      - "Announcements"
+      - "Formal presentations"
+
+  warm_coach:
+    description: "Warm, encouraging coaching style for guidance and motivation"
+    parameters:
+      rate: "-10%"         # Slower pace for thoughtfulness
+      pitch: "-3Hz"        # Lower pitch for warmth
+      volume: "+1dB"       # Comfortable volume
+      emphasis_strength: "moderate"
+    use_cases:
+      - "Educational content"
+      - "Self-help materials"
+      - "Motivational speaking"
+      - "Therapy sessions"
+
+  dramatic:
+    description: "Expressive dramatic style for storytelling and entertainment"
+    parameters:
+      rate: "+5%"          # Variable pacing
+      pitch: "+8Hz"        # Higher pitch for expressiveness
+      volume: "+4dB"       # More dynamic volume
+      emphasis_strength: "strong"
+    use_cases:
+      - "Audiobook narration"
+      - "Storytelling"
+      - "Entertainment content"
+      - "Character voices"
+
+  technical:
+    description: "Clear, precise style for technical and instructional content"
+    parameters:
+      rate: "-8%"          # Slower for comprehension
+      pitch: "+1Hz"        # Slight pitch elevation for clarity
+      volume: "+1dB"       # Consistent volume
+      emphasis_strength: "reduced"
+    use_cases:
+      - "Technical documentation"
+      - "Tutorials"
+      - "Instructions"
+      - "Scientific content"
+
+  meditation:
+    description: "Calm, soothing style for relaxation and mindfulness"
+    parameters:
+      rate: "-20%"         # Very slow and relaxed
+      pitch: "-8Hz"        # Lower, calming pitch
+      volume: "-2dB"       # Softer volume
+      emphasis_strength: "reduced"
+    use_cases:
+      - "Meditation guides"
+      - "Sleep stories"
+      - "Relaxation content"
+      - "Mindfulness exercises"
+
+  energetic:
+    description: "High-energy style for motivational and upbeat content"
+    parameters:
+      rate: "+15%"         # Faster pace for energy
+      pitch: "+12Hz"       # Higher pitch for excitement
+      volume: "+5dB"       # Louder for impact
+      emphasis_strength: "strong"
+    use_cases:
+      - "Fitness content"
+      - "Marketing pitches"
+      - "Motivational speeches"
+      - "Sports commentary"
+
+  corporate:
+    description: "Professional business style for corporate communications"
+    parameters:
+      rate: "-3%"          # Measured pace
+      pitch: "+3Hz"        # Professional authority
+      volume: "+2dB"       # Clear presence
+      emphasis_strength: "moderate"
+    use_cases:
+      - "Business presentations"
+      - "Corporate training"
+      - "Professional announcements"
+      - "Meeting recordings"
+
+  storyteller:
+    description: "Engaging narrative style for stories and books"
+    parameters:
+      rate: "+2%"          # Natural pacing with variation
+      pitch: "+5Hz"        # Slightly elevated for engagement
+      volume: "+3dB"       # Clear for listening
+      emphasis_strength: "strong"
+    use_cases:
+      - "Audiobooks"
+      - "Children's stories"
+      - "Narrative podcasts"
+      - "Historical accounts"
+
+  intimate:
+    description: "Close, personal style for private or romantic content"
+    parameters:
+      rate: "-15%"         # Slower, more deliberate
+      pitch: "-5Hz"        # Lower, warmer tone
+      volume: "-1dB"       # Softer, closer feeling
+      emphasis_strength: "moderate"
+    use_cases:
+      - "Personal messages"
+      - "Romance audiobooks"
+      - "Private communications"
+      - "ASMR content"
+
+# Default settings
+defaults:
+  style: "conversational"
+  intensity: 3
+
+# Intensity level multipliers
+# Applied to all prosody parameters to scale the effect
+intensity_levels:
+  "1":
+    multiplier: 0.3
+    description: "Very subtle - barely noticeable prosody changes"
+  "2":
+    multiplier: 0.6
+    description: "Subtle - gentle prosody adjustments"
+  "3":
+    multiplier: 1.0
+    description: "Normal - standard prosody application"
+  "4":
+    multiplier: 1.4
+    description: "Enhanced - more pronounced prosody effects"
+  "5":
+    multiplier: 2.0
+    description: "Maximum - dramatic prosody changes"
+
+# Style compatibility matrix
+# Defines which styles work well together for blending
+compatibility:
+  conversational:
+    - warm_coach
+    - storyteller
+  newscast:
+    - corporate
+    - technical
+  dramatic:
+    - storyteller
+    - energetic
+  meditation:
+    - intimate
+    - warm_coach
+
+# Parameter bounds and validation
+parameter_bounds:
+  rate:
+    min: "-50%"
+    max: "+100%"
+    default: "+0%"
+  pitch:
+    min: "-20Hz"
+    max: "+50Hz"
+    default: "+0Hz"
+  volume:
+    min: "-10dB"
+    max: "+10dB"
+    default: "+0dB"
+  emphasis_strength:
+    values: ["reduced", "moderate", "strong"]
+    default: "moderate"
+
+# Metadata
+metadata:
+  version: "1.0"
+  last_updated: "2024-12-19"
+  description: "Prosody style configurations for TTS enhancement"

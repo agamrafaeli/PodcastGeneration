@@ -1,0 +1,10 @@
+#!/bin/bash
+# Convenience script to run TTS CLI with proper PYTHONPATH
+# Usage: ./tts-cli [args...]
+#   or: chmod +x tts-cli && ./tts-cli --help
+
+# Set PYTHONPATH to include src directory
+export PYTHONPATH="$(dirname "$0")/src:$PYTHONPATH"
+
+# Run the CLI module
+python -m cli "$@"

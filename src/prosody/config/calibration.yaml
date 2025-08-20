@@ -1,0 +1,235 @@
+# Voice Calibration Configurations
+# Voice-specific adjustments to optimize prosody parameters for natural synthesis
+
+calibrations:
+  
+  # Default calibration applied to all voices unless specifically overridden
+  _default:
+    description: "Default calibration for all voices"
+    adjustments:
+      rate_modifier: 1.0      # No adjustment to rate parameters
+      pitch_modifier: 1.0     # No adjustment to pitch parameters
+      volume_modifier: 1.0    # No adjustment to volume parameters
+      emphasis_modifier: 1.0  # No adjustment to emphasis parameters
+
+  # English (US) Voices - EdgeTTS
+  "en-US-JennyNeural":
+    description: "Friendly female voice - naturally expressive, reduce intensity for conversational styles"
+    characteristics:
+      - "naturally_expressive"
+      - "clear_articulation"
+      - "friendly_tone"
+    adjustments:
+      rate_modifier: 1.1       # Slightly faster base rate works well
+      pitch_modifier: 0.8      # Reduce pitch adjustments (already expressive)
+      volume_modifier: 0.9     # Slightly reduce volume adjustments
+      emphasis_modifier: 0.7   # Less emphasis needed (naturally emphatic)
+
+  "en-US-AriaNeural":
+    description: "Professional female voice - clear and authoritative, good for news/corporate"
+    characteristics:
+      - "professional"
+      - "authoritative"
+      - "clear"
+    adjustments:
+      rate_modifier: 0.95      # Slightly slower for authority
+      pitch_modifier: 1.1      # Can handle more pitch variation
+      volume_modifier: 1.1     # Can be pushed slightly louder
+      emphasis_modifier: 1.2   # Benefits from stronger emphasis
+
+  "en-US-GuyNeural":
+    description: "Professional male voice - warm and reliable, good for coaching/narration"
+    characteristics:
+      - "warm"
+      - "reliable"
+      - "smooth"
+    adjustments:
+      rate_modifier: 0.9       # Slower pace enhances warmth
+      pitch_modifier: 0.9      # More subtle pitch changes
+      volume_modifier: 1.0     # Standard volume adjustments
+      emphasis_modifier: 0.9   # Moderate emphasis works best
+
+  "en-US-DavisNeural":
+    description: "Mature male voice - authoritative and trustworthy, ideal for serious content"
+    characteristics:
+      - "mature"
+      - "authoritative" 
+      - "trustworthy"
+    adjustments:
+      rate_modifier: 0.85      # Slower for gravitas
+      pitch_modifier: 0.7      # Minimal pitch changes (naturally authoritative)
+      volume_modifier: 1.15    # Can handle stronger volume presence
+      emphasis_modifier: 1.0   # Standard emphasis
+
+  "en-US-AmberNeural":
+    description: "Youthful female voice - energetic and friendly, good for casual content"
+    characteristics:
+      - "youthful"
+      - "energetic"
+      - "casual"
+    adjustments:
+      rate_modifier: 1.2       # Can handle faster speech well
+      pitch_modifier: 1.3      # Benefits from pitch variation
+      volume_modifier: 1.0     # Standard volume
+      emphasis_modifier: 1.1   # Slight emphasis boost
+
+  "en-US-AnaNeural":
+    description: "Conversational female voice - natural and relatable"
+    characteristics:
+      - "conversational"
+      - "natural"
+      - "relatable"
+    adjustments:
+      rate_modifier: 1.0       # Natural rate works well
+      pitch_modifier: 0.95     # Subtle pitch adjustments
+      volume_modifier: 0.95    # Slightly softer adjustments
+      emphasis_modifier: 0.85  # Less emphasis for naturalness
+
+  # English (UK) Voices
+  "en-GB-SoniaNeural":
+    description: "British female voice - elegant and refined"
+    characteristics:
+      - "elegant"
+      - "refined"
+      - "british_accent"
+    adjustments:
+      rate_modifier: 0.9       # Slightly slower for elegance
+      pitch_modifier: 0.8      # More subtle pitch changes
+      volume_modifier: 0.95    # Refined volume levels
+      emphasis_modifier: 0.8   # Less emphasis for sophistication
+
+  "en-GB-RyanNeural":
+    description: "British male voice - distinguished and professional"
+    characteristics:
+      - "distinguished"
+      - "professional"
+      - "british_accent"
+    adjustments:
+      rate_modifier: 0.85      # Slower, more measured speech
+      pitch_modifier: 0.9      # Controlled pitch variation
+      volume_modifier: 1.0     # Standard volume
+      emphasis_modifier: 0.9   # Moderate emphasis
+
+  # Other English Variants
+  "en-AU-NatashaNeural":
+    description: "Australian female voice - friendly and approachable"
+    characteristics:
+      - "friendly"
+      - "approachable"
+      - "australian_accent"
+    adjustments:
+      rate_modifier: 1.1       # Can handle slightly faster speech
+      pitch_modifier: 1.0      # Standard pitch adjustments
+      volume_modifier: 1.0     # Standard volume
+      emphasis_modifier: 1.0   # Standard emphasis
+
+  "en-CA-ClaraNeural":
+    description: "Canadian female voice - polite and clear"
+    characteristics:
+      - "polite"
+      - "clear"
+      - "canadian_accent"
+    adjustments:
+      rate_modifier: 0.95      # Slightly measured pace
+      pitch_modifier: 0.9      # Gentle pitch changes
+      volume_modifier: 0.95    # Softer adjustments
+      emphasis_modifier: 0.9   # Polite emphasis level
+
+# Voice categories for bulk calibration
+categories:
+  female_professional:
+    voices:
+      - "en-US-AriaNeural"
+      - "en-GB-SoniaNeural" 
+      - "en-CA-ClaraNeural"
+    base_adjustments:
+      rate_modifier: 0.95
+      pitch_modifier: 0.9
+      volume_modifier: 1.0
+      emphasis_modifier: 0.95
+
+  male_authoritative:
+    voices:
+      - "en-US-DavisNeural"
+      - "en-GB-RyanNeural"
+    base_adjustments:
+      rate_modifier: 0.85
+      pitch_modifier: 0.8
+      volume_modifier: 1.1
+      emphasis_modifier: 0.9
+
+  casual_friendly:
+    voices:
+      - "en-US-JennyNeural"
+      - "en-US-AmberNeural"
+      - "en-AU-NatashaNeural"
+    base_adjustments:
+      rate_modifier: 1.05
+      pitch_modifier: 1.1
+      volume_modifier: 0.95
+      emphasis_modifier: 0.9
+
+# Style-specific voice recommendations
+style_voice_recommendations:
+  newscast:
+    recommended:
+      - "en-US-AriaNeural"
+      - "en-US-DavisNeural"
+      - "en-GB-RyanNeural"
+    avoid:
+      - "en-US-AmberNeural"  # Too casual for news
+
+  warm_coach:
+    recommended:
+      - "en-US-GuyNeural"
+      - "en-US-JennyNeural"
+      - "en-US-AnaNeural"
+    avoid:
+      - "en-US-DavisNeural"  # Too authoritative
+
+  dramatic:
+    recommended:
+      - "en-US-AmberNeural"
+      - "en-US-JennyNeural"
+    enhance_for:
+      pitch_modifier: 1.2    # Extra pitch variation for drama
+      emphasis_modifier: 1.3 # Stronger emphasis for drama
+
+  meditation:
+    recommended:
+      - "en-US-GuyNeural"
+      - "en-CA-ClaraNeural"
+    enhance_for:
+      rate_modifier: 0.7     # Much slower for meditation
+      volume_modifier: 0.8   # Softer for relaxation
+
+# Advanced calibration features
+advanced:
+  # Context-aware adjustments
+  context_adjustments:
+    long_form_content:
+      rate_modifier: 0.9     # Slightly slower for long content
+      emphasis_modifier: 0.8 # Less emphasis to avoid fatigue
+    
+    short_announcements:
+      volume_modifier: 1.1   # Slightly louder for impact
+      emphasis_modifier: 1.2 # More emphasis for attention
+
+  # Time-of-day optimizations
+  time_based:
+    morning:
+      pitch_modifier: 1.05   # Slightly brighter for morning energy
+      volume_modifier: 1.0
+    
+    evening:
+      pitch_modifier: 0.95   # Slightly lower for evening calm
+      volume_modifier: 0.95
+
+# Metadata
+metadata:
+  version: "1.0"
+  last_updated: "2024-12-19"
+  description: "Voice-specific calibrations for optimal prosody synthesis"
+  voice_count: 9
+  supported_engines:
+    - "edge_tts"
