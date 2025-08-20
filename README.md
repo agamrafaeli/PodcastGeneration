@@ -19,8 +19,11 @@ A Python script that converts text files to high-quality MP3 audio using Microso
 ### 1. Installation
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install runtime dependencies
+pip install -r requirements-core.txt -r requirements-tts.txt
+
+# Install test dependencies (includes runtime)
+pip install -r requirements-dev.txt
 ```
 
 ### 2. Basic Usage
@@ -282,7 +285,9 @@ PodcastGeneration/
 │   ├── styles.yaml       # Prosody style definitions
 │   └── calibration.yaml  # Voice calibration settings
 ├── tests/                # Comprehensive test suite
-├── requirements.txt      # Python dependencies
+├── requirements-core.txt  # Core runtime dependencies
+├── requirements-tts.txt   # TTS engine-specific dependencies
+├── requirements-dev.txt   # Development and test dependencies
 └── README.md            # This documentation
 ```
 
@@ -290,7 +295,8 @@ PodcastGeneration/
 
 - Python 3.7 or higher
 - Internet connection (required for Microsoft Edge TTS)
-- Dependencies listed in `requirements.txt`
+- Dependencies listed in `requirements-core.txt` and `requirements-tts.txt`
+  (or `requirements-dev.txt` for tests)
 
 ## 🎵 Audio Quality
 
