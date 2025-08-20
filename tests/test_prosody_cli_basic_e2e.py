@@ -16,6 +16,11 @@ import pytest
 
 from tests.test_helpers import should_use_mock_engines, get_test_mode, validate_audio_and_print_info
 
+pytestmark = pytest.mark.skipif(
+    should_use_mock_engines(),
+    reason="Requires real TTS engines"
+)
+
 
 @pytest.mark.asyncio
 @pytest.mark.e2e
