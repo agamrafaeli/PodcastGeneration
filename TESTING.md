@@ -152,7 +152,7 @@ pytest.main(['-v', '-k', 'pyttsx3', 'tests/'])
 ### Common Issues
 
 **Mock tests failing:**
-- Ensure all dependencies are installed: `pip install -r requirements.txt`
+- Ensure all dependencies are installed: `pip install -r requirements-dev.txt`
 - Check Python version compatibility (3.7+)
 
 **Real engine tests failing:**
