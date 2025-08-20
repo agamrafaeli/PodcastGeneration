@@ -10,6 +10,14 @@ The test suite is designed with two main approaches:
 
 ## Quick Start
 
+Before running any tests, install the development dependencies:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+The test suite automatically adds the `src` directory to `PYTHONPATH`, so no additional package installation is required.
+
 **Development Testing (Recommended)**
 ```bash
 # Fast mock tests - use during development

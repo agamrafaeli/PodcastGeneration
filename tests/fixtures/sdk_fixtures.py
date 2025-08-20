@@ -8,6 +8,12 @@ import pytest
 import sys
 from pathlib import Path
 
+# Ensure the source package is importable without installation
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+SRC_PATH = PROJECT_ROOT / "src"
+if str(SRC_PATH) not in sys.path:
+    sys.path.insert(0, str(SRC_PATH))
+
 from tts.sdk import TTSSDK
 from tests.mocks import MockTTSSDK, MockEngineFactory
 from tests.test_helpers import should_use_mock_engines, get_test_mode
