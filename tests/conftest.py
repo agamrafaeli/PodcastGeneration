@@ -6,7 +6,7 @@ Clean, maintainable test configuration using organized fixture modules
 
 # Import all fixtures from organized modules
 from .fixtures.sdk_fixtures import *
-from .fixtures.temp_fixtures import * 
+from .fixtures.temp_fixtures import *
 from .fixtures.sample_fixtures import *
 
 # Import pytest hooks for parallel execution
