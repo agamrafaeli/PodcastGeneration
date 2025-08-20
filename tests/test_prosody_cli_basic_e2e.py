@@ -11,6 +11,7 @@ import tempfile
 import shutil
 import os
 from pathlib import Path
+import os
 import pytest
 
 from tests.test_helpers import should_use_mock_engines, get_test_mode, validate_audio_and_print_info
@@ -237,7 +238,7 @@ async def test_prosody_cli_without_flags():
             sys.executable,
             "-m", "cli",
             str(sample_file),
-            "--engine", "edge_tts",
+            "--engine", "pyttsx3",
             "-o", str(output_file)
         ]
         
