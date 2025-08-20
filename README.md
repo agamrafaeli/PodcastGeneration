@@ -23,23 +23,31 @@ A Python script that converts text files to high-quality MP3 audio using Microso
 pip install -r requirements.txt
 ```
 
-### 2. Basic Usage
+### 2. Command Overview
+
+| Subcommand | Purpose |
+|------------|---------|
+| `generate` | Convert a text file into an MP3 using the selected engine and voice options. |
+| `sample`   | Create consolidated voice samples to compare different narrators. |
+| `cleanup`  | Remove generated audio files (`--temp` for temporary files, `--all` for everything). |
+
+### 3. Basic Usage
 
 **Option 1: Using the convenience script (recommended)**
 ```bash
 # Convert a text file to MP3 with default English voice (creates sample_script.mp3)
-./tts-cli sample_script.txt --engine edge_tts
+./tts-cli generate sample_script.txt --engine edge_tts
 
 # Use language-based voice selection (automatically picks best voice for the language)
-./tts-cli sample_script.txt --engine edge_tts -v "en-US-JennyNeural"
-./tts-cli sample_script.txt --engine gtts -l fr
-./tts-cli sample_script.txt --engine edge_tts -v "de-DE-KatjaNeural"
+./tts-cli generate sample_script.txt --engine edge_tts -v "en-US-JennyNeural"
+./tts-cli generate sample_script.txt --engine gtts -l fr
+./tts-cli generate sample_script.txt --engine edge_tts -v "de-DE-KatjaNeural"
 
 # Specify custom output file
-./tts-cli sample_script.txt --engine edge_tts -o my_podcast.mp3
+./tts-cli generate sample_script.txt --engine edge_tts -o my_podcast.mp3
 
 # Use a specific voice (traditional method)
-./tts-cli sample_script.txt --engine edge_tts -v "en-US-JennyNeural"
+./tts-cli generate sample_script.txt --engine edge_tts -v "en-US-JennyNeural"
 ```
 
 **Option 2: Using PYTHONPATH directly**
@@ -48,17 +56,17 @@ pip install -r requirements.txt
 export PYTHONPATH=src
 
 # Run CLI module directly
-python -m cli sample_script.txt --engine edge_tts
+python -m cli generate sample_script.txt --engine edge_tts
 
 # Or run the script directly
-python src/cli.py sample_script.txt --engine edge_tts
+python src/cli.py generate sample_script.txt --engine edge_tts
 ```
 
 **Option 3: One-liner with PYTHONPATH**
 ```bash
 # For quick one-off commands
 PYTHONPATH=src python -m cli --help
-PYTHONPATH=src python -m cli sample_script.txt --engine edge_tts
+PYTHONPATH=src python -m cli generate sample_script.txt --engine edge_tts
 ```
 
 ## 🎤 Voice Sample Generator
@@ -67,10 +75,10 @@ PYTHONPATH=src python -m cli sample_script.txt --engine edge_tts
 
 ```bash
 # Generate consolidated voice samples with narrator labels ("One:", "Two:", "Three:")
-./tts-cli --voice-sample "Hello world, this is a test sentence for voice comparison."
+./tts-cli sample "Hello world, this is a test sentence for voice comparison."
 
 # Use longer text for better voice evaluation - creates one professional MP3
-./tts-cli --voice-sample "Welcome to our podcast. Today we'll be discussing the latest developments in artificial intelligence and machine learning. This longer sample will help you evaluate voice quality and characteristics."
+./tts-cli sample "Welcome to our podcast. Today we'll be discussing the latest developments in artificial intelligence and machine learning. This longer sample will help you evaluate voice quality and characteristics."
 ```
 
 **Features:**
@@ -82,52 +90,65 @@ PYTHONPATH=src python -m cli sample_script.txt --engine edge_tts
 
 This creates a production-ready voice comparison that's perfect for professional decision-making.
 
+## 🎧 Podcast Workflow Example
+
+```bash
+# 1️⃣ Generate a podcast episode from a script
+./tts-cli generate episode.txt --engine edge_tts -v "en-US-JennyNeural" -o episode.mp3
+
+# 2️⃣ (Optional) Preview different narrators
+./tts-cli sample "Welcome to the show!" 
+
+# 3️⃣ Clean up temporary files when done
+./tts-cli cleanup --temp
+```
+
 ## 📝 Usage Examples
 
 ### 🌍 Language-Based Voice Selection (Recommended)
 ```bash
 # English variants
-./tts-cli script.txt --engine edge_tts -v "en-US-JennyNeural"    # American English
-./tts-cli script.txt --engine edge_tts -v "en-GB-SoniaNeural"    # British English
-./tts-cli script.txt --engine edge_tts -v "en-AU-NatashaNeural"  # Australian English
+./tts-cli generate script.txt --engine edge_tts -v "en-US-JennyNeural"    # American English
+./tts-cli generate script.txt --engine edge_tts -v "en-GB-SoniaNeural"    # British English
+./tts-cli generate script.txt --engine edge_tts -v "en-AU-NatashaNeural"  # Australian English
 
 # Other languages
-./tts-cli script.txt --engine gtts -l fr       # French
-./tts-cli script.txt --engine edge_tts -v "es-ES-ElviraNeural"    # Spanish (Spain)
-./tts-cli script.txt --engine edge_tts -v "de-DE-KatjaNeural"     # German
-./tts-cli script.txt --engine gtts -l ja       # Japanese
-./tts-cli script.txt --engine edge_tts -v "zh-CN-XiaoxiaoNeural" # Chinese (Simplified)
+./tts-cli generate script.txt --engine gtts -l fr       # French
+./tts-cli generate script.txt --engine edge_tts -v "es-ES-ElviraNeural"    # Spanish (Spain)
+./tts-cli generate script.txt --engine edge_tts -v "de-DE-KatjaNeural"     # German
+./tts-cli generate script.txt --engine gtts -l ja       # Japanese
+./tts-cli generate script.txt --engine edge_tts -v "zh-CN-XiaoxiaoNeural" # Chinese (Simplified)
 
 # List available voices
-./tts-cli --engine edge_tts --list-voices
+./tts-cli generate --engine edge_tts --list-voices
 ```
 
 ### List Available Voices
 ```bash
-./tts-cli --list-voices
+./tts-cli generate --list-voices
 ```
 
 ### Advanced Options
 ```bash
 # Faster speech rate with higher pitch
-./tts-cli script.txt --engine edge_tts -v "en-US-JennyNeural" -r "+50%" -p "+10Hz" -o fast_narration.mp3
+./tts-cli generate script.txt --engine edge_tts -v "en-US-JennyNeural" -r "+50%" -p "+10Hz" -o fast_narration.mp3
 
 # Slower speech rate for better comprehension
-./tts-cli script.txt --engine gtts -l fr --slow -o slow_narration.mp3
+./tts-cli generate script.txt --engine gtts -l fr --slow -o slow_narration.mp3
 
 # Combine voice selection with custom settings
-./tts-cli script.txt --engine edge_tts -v "de-DE-KatjaNeural" -r "+25%" -p "+5Hz"
+./tts-cli generate script.txt --engine edge_tts -v "de-DE-KatjaNeural" -r "+25%" -p "+5Hz"
 ```
 
 ### 🎭 Bulk Voice Generation
 ```bash
 # Generate voice samples to compare different engines
-./tts-cli --voice-sample "Your sample text here"
+./tts-cli sample "Your sample text here"
 
 # Use different engines for comparison
-./tts-cli script.txt --engine edge_tts -v "en-US-JennyNeural"
-./tts-cli script.txt --engine gtts -l en
-./tts-cli script.txt --engine pyttsx3 --rate-int 200
+./tts-cli generate script.txt --engine edge_tts -v "en-US-JennyNeural"
+./tts-cli generate script.txt --engine gtts -l en
+./tts-cli generate script.txt --engine pyttsx3 --rate-int 200
 ```
 
 **Note**: Bulk generation creates a folder `{filename}_bulk_voices/` with hundreds of MP3 files, one for each available voice. Perfect for:
@@ -151,31 +172,31 @@ This creates a production-ready voice comparison that's perfect for professional
 ## 🛠️ Command Line Options
 
 ```
-usage: text_to_speech.py [-h] [--engine {edge_tts,gtts,pyttsx3}] [-o OUTPUT] [-v VOICE] 
-                         [-l LANGUAGE] [-r RATE] [--rate-int RATE_INT] [-p PITCH] 
-                         [--volume VOLUME] [--slow] [--list-voices] [--engine-info]
-                         [--voice-sample TEXT] [--cleanup-all] [--cleanup-temp]
-                         [input_file]
+usage: tts-cli <subcommand> [options]
 
-positional arguments:
-  input_file            Input text file path
+Subcommands:
+  generate   Convert text files to audio
+  sample     Create consolidated voice samples
+  cleanup    Remove generated audio files
 
-optional arguments:
-  -h, --help            Show help message
-  --engine {edge_tts,gtts,pyttsx3}    TTS engine to use (default: edge_tts)
-  -o, --output OUTPUT   Output audio file path (default: generated/input_filename.mp3)
-  -v, --voice VOICE     Voice name/ID to use (engine-specific)
-  -l, --language LANG   Language code (e.g., 'en', 'fr') - mainly for gTTS
-  -r, --rate RATE       Speech rate for EdgeTTS (e.g., '+50%', '-25%')
-  --rate-int RATE_INT   Speech rate for pyttsx3 (words per minute, e.g., 200)
-  -p, --pitch PITCH     Pitch adjustment for EdgeTTS (e.g., '+10Hz', '-5Hz')
-  --volume VOLUME       Volume for pyttsx3 (0.0-1.0)
-  --slow               Slow speech for gTTS
-  --list-voices        List voices for specified engine
-  --engine-info        Show information about specified engine
-  --voice-sample TEXT  Generate 3 audio samples with different voices using provided text
-  --cleanup-all        Remove all files from generated/ directory
-  --cleanup-temp       Remove files with 'temp' or 'test' in their names
+Common generate options:
+  --engine {edge_tts,gtts,pyttsx3}
+  -v, --voice VOICE
+  -l, --language LANG
+  -r, --rate RATE
+  --rate-int RATE_INT
+  -p, --pitch PITCH
+  --prosody-style STYLE
+  --prosody-intensity 1-5
+  -o, --output PATH
+  --list-voices
+  --engine-info
+
+Cleanup options:
+  --temp   Remove files with 'temp' or 'test' in the name
+  --all    Remove everything in the generated/ directory
+
+Use `tts-cli <subcommand> --help` for details on each command.
 ```
 
 ## 🌍 Language Support
@@ -199,7 +220,7 @@ The script supports **67+ languages** with automatic voice selection. Popular la
 
 **To see all supported languages:**
 ```bash
-./tts-cli --list-languages
+./tts-cli generate --list-languages
 ```
 
 **Why use language codes instead of voice names?**
@@ -310,7 +331,7 @@ The script generates high-quality MP3 files with:
 ./tts-cli --help
 
 # List available voices
-./tts-cli --list-voices
+./tts-cli generate --list-voices
 ```
 
 ## 🧪 Testing
