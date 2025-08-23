@@ -1,0 +1,4 @@
+#!/bin/bash
+# Convenience script to run prosody CLI with proper PYTHONPATH
+export PYTHONPATH="$(dirname "$0")/src:$PYTHONPATH"
+python -m prosody "$@"

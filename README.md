@@ -361,3 +361,26 @@ This project is open source. The Edge TTS service is provided by Microsoft.
 ---
 
 **Happy podcasting! 🎙️🎧** 
+## 📜 MLK "I Have a Dream" Demo
+
+This repository includes a small worked example that shows the full pipeline:
+Preset → Annotation Parsing → Performance Craft → Audio Render.
+
+### How to try
+
+1. **Setup**
+   ```bash
+   pip install pyyaml
+   ```
+2. **Dry-run**
+   ```bash
+   prosody demo-mlk --out demo.wav --dry-run
+   ```
+3. **Render audio**
+   ```bash
+   prosody demo-mlk --out demo.wav
+   ```
+4. **Run the test**
+   ```bash
+   python -m pytest tests/test_demo_mlk_cli.py -v
+   ```
