@@ -1,0 +1,8 @@
+# Prophetic oratory preset for MLK demo
+tempo: 0.9
+pitch: "+2Hz"
+volume: "+1dB"
+style: prophetic
+repetition:
+  phrase: "I have a dream"
+  count: 3
