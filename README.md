@@ -342,6 +342,24 @@ USE_REAL_ENGINES=true python -m pytest tests/ -v
 - **Prototyping**: Quick audio mockups for multilingual applications
 - **Global Content**: Easily create audio versions for international audiences
 
+## How to try
+
+Get started with the inspirational "I Have a Dream" demo which showcases preset loading, annotation parsing, performance craft, and audio rendering.
+
+```bash
+# Setup (from repository root)
+pip install -r requirements-core.txt -r requirements-tts.txt
+
+# Dry run to see the render plan
+./prosody demo-mlk --out demo.wav --dry-run
+
+# Render silent audio
+./prosody demo-mlk --out demo.wav
+
+# Run the end-to-end test
+python -m pytest tests/test_demo_mlk_cli.py -v
+```
+
 ## 📈 Performance
 
 - **Speed**: Typically 2-5x faster than real-time playback

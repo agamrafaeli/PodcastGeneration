@@ -1,0 +1,6 @@
+#!/bin/bash
+# Convenience script for prosody demos
+# Usage: ./prosody demo-mlk --out out.wav
+
+export PYTHONPATH="$(dirname "$0")/src:$PYTHONPATH"
+python -m prosody.cli "$@"

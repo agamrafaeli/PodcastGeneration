@@ -1,0 +1,12 @@
+# Preset for prophetic oratory style
+# Defines base prosody parameters and a repetition strategy
+
+tempo: 400          # words per minute
+pitch: 0            # base pitch offset in Hz
+volume: 0           # base volume offset in dB
+style: dramatic
+voice: en-US-JennyNeural
+repetition:
+  phrase: "I have a dream"
+  pitch_increment: 2    # Hz increase per repetition
+  volume_increment: 1   # dB increase per repetition
